@@ -1,6 +1,4 @@
-[![AppSheet](https://github.com/h4ppy0wl/myMaterials/blob/main/app-sheet.svg)](https://script.google.com/home/start) <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/480px-Google_Apps_Script.svg.png" alt="appsheet" url="https://about.appsheet.com/home/" width="50" height="50"> [![Forms](https://github.com/h4ppy0wl/myMaterials/blob/main/forms_2020q4_48dp.png)](https://docs.google.com/forms/)  [![Sheets](https://github.com/h4ppy0wl/myMaterials/blob/main/sheets_2020q4_48dp.png)](https://docs.google.com/spreadsheets/)  [![Docs](https://github.com/h4ppy0wl/myMaterials/blob/main/docs_2020q4_48dp.png)](https://docs.google.com/document/) <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/JavaScript-logo.png" alt="JS" width="50" height="50">
-
-# AVMS
+# AVMS (Automated Voucher Management)
 :rocket: Customer Survey with Automated Voucher Management System
 
 
@@ -23,8 +21,13 @@ It leverages the free tier capabilities of:
 
 :vertical_traffic_light: Apps created with AppSheet can be used free of charge by 10 users!
 
+**Benefits:** 
+1. Increase response rates by incentivizing participation with discount vouchers just after submiting the form.
+2. Automate email responses with vouchers upon survey completion, and integrating the system with voucher managagement app.
+3. Manage voucher expiration and usage efficiently and with multiple users.
+4. User device independant.
 
-**Problem definition:**  
+## Problem definition 
 I wanted to run a survey for analyzing customer satisfaction and value creating elements for customers of a local cafe. I wanted to collect 250 responses at least. So, negotiated with cafe manager to provide a discount for all participants and also a raffle. We needed a reliable voucher generation and management system that
 * Sends automated form submission "thank you" emails containing vouchers
 * Tracks voucher usage and expiration at the service point
@@ -32,43 +35,38 @@ I wanted to run a survey for analyzing customer satisfaction and value creating 
 * It should be free!
 
 
-**Automated Voucher Management:**  
-1. A Google form containing description and survey questionnaire. Don't forget to add email validity checks in the form if you are collecting emails as a non required field. example:
+## Solution (steps to follow) 
+1. Create a Google Form to collect customer feedback. A Google form containing description and survey questionnaire. Don't forget to add email validity checks in the form if you are collecting emails as a non required field. example:
  
    ```regex
    ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
    ```
+<img src="https://github.com/h4ppy0wl/myMaterials/blob/main/ScreenshotForm.png">
+
 2. Connect the form to a Google Sheet
-3. Create a Google Doc contaning "Thank you" email body. Mark variables in the body using double curly braces like {{exampleVar}} in the document text. look in the example doc in the project files.
+3. Create a Google Doc using "Send curated content email template.docx" in the repository. Texts in the ```{{text}}``` are used as varables in the code.gs; you can edit the document but keep those. otherwise remember to edit the Apps Script code too. From **Share** click on the **Copy link**, and keep it for later (in a note :D )
 4. Generate random vouchers in a sheet document using a formula function. You can use following formula to generate a **seven** charachter string. customize it for your need.
    ```
    =CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))
    ```
-6. Create a spead Sheet using the sample .xlsx file in the repository. paste your vouchers in the table.in conatining pregenerated vouchers
-Upon form  completion, Google Apps Script triggers an automated workflow:
-Retrieves a voucher code from a designated Google Sheet.
-Generates a personalized email based on a Google Doc template.
-The email contains the voucher code, submission details (date/time), and expiration date.
-Records voucher issuance details (issue date, expiration date, recipient email) in a separate voucher reference sheet.
-Email Notification with Status Tracking:
-The script sends the email notification to the customer, including the voucher information.
-Records a note in the form result sheet to track the email sending status and the sent voucher code.
-Voucher Usage Management with AppSheet:
-Develop a mobile app using Google AppSheet for cashiers to efficiently manage vouchers at the service usage point.
-The app, synchronized with the voucher reference sheet, allows cashiers to:
-Look up vouchers by code.
-Verify voucher validity, usage status, issue date, and issuance status.
-(Optional) Mark vouchers as used within the app (based on your implementation).
-Benefits:
+6. Create a spead Sheet using the sample vouchers.xlsx file in the repository. Paste your column of vouchers in the table. Let other columns and cell structures as it is. From **Share** click on the **Copy link**, and keep it for later (in the same note :D )
+7. Open the survey responses spreadsheet connected to your form click **Extensions** > **Apps Script**.
 
-Enhanced Customer Experience: Streamlined survey process coupled with automatic voucher rewards incentivizes feedback.
-Improved Efficiency: Automated workflows eliminate manual voucher management tasks.
-Real-Time Data: Centralized data storage in Google Sheets facilitates data analysis and reporting.
-Cost-Effective Solution: Leverages free Google Apps features for businesses with less than 10 users.
-Getting Started:
+    a. copy ```Code.js``` file in the repository and paste it to the ```code.gs``` in the Apps Script project.  
+    b. change the ```url``` in ```const EMAIL_TEMPLATE_DOC_URL = "url"``` with email template Doc link.  
+    c. change the ```url``` in ```const VOUCHERS_SHEET_URL =``` with voucher reference sheet link.  
+    d. Edit ```const EMAIL_SUBJECT = "text"``` and ```const EMAIL_BCC = "adress_1@email.com, address_2@email.com"``` and ```const EXPIRATION_DURATION_IN_DAYS = 14``` based on your preference.  
+    e. In the function dropdown, select ```installTrigger```.  
+    f. Click Run.  
+    g. When prompted, authorize the script. If the OAuth consent screen displays the warning, This app isn't verified, continue by selecting **Advanced > Go to {Project Name} (unsafe)**.  
+   
+   :rotating_light: **Important**: If you run ```installTrigger``` more than once, the script creates multiple triggers that each send an email when a user submits the form. To delete extra triggers and avoid duplicate emails, click Triggers alarm. Right-click on each extra trigger and click Delete trigger. you can delete this function from code and do the trigger installation manually from Apps Script.
 
-Clone the repository.
-Follow the included setup instructions to configure Google Apps services.
-Customize Google Forms questions, voucher reference sheet, and email template to meet your specific needs.
-Build your AppSheet app to suit your voucher usage management requirements.
-Please note: This description serves as a general guideline. Specific configuration instructions might vary depending on your implementation details.
+## Test automated email response
+Switch back to the survey responses spreadsheet and click **Tools > Manage form > Go to live form**. Fill out the form and click Submit. Check your email for an email with links to the content you selected. you can check other email addresses that you entered as BCC. If you look into the vouchers spread sheet, you should notice new information. :four_leaf_clover: I Hope everything works till here.
+
+## Voucher Management App
+You need a voucher management app at the service point to check validity of each discount voucher and mark that it is used or not: and do all this in realtime and multiuser. I used Google AppSheet to quickly create the app. App can be used in mobile phone and computers and you can limit the users by requiring signin if you use the premium service. **The service is no code**, so I can not effectively reflect what I did to create the app. But I highly suggest you to visit this <a href= "https://about.appsheet.com/how-to-create-an-app/">tutorial</a>. You can find a lot more in youtube and specially <a href="https://support.google.com/appsheet/">AppSheet help center</a>. 
+I share screenshot of the app I created to give you ideas:  
+<img src="https://github.com/h4ppy0wl/myMaterials/blob/main/Screenshot01.png"> <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/Screenshot02.png"><img src="https://github.com/h4ppy0wl/myMaterials/blob/main/Screenshot03.png">
+
