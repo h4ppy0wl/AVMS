@@ -6,7 +6,7 @@ This project offers a cost-effective, fully integrated solution for:
 
 :gear: collecting customer feedback
 
-:gear: Automated form submition Email
+:gear: Automated form submission Email
 
 :gear: rewarding participation with discount vouchers
 
