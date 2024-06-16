@@ -77,3 +77,6 @@ You need a voucher management app at the service point to check validity of each
 I share screenshot of the app I created to give you ideas:  
 <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/Screenshot01.png"> <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/Screenshot02.png"><img src="https://github.com/h4ppy0wl/myMaterials/blob/main/Screenshot03.png">
 
+
+
+**Disclaimer:** This solution and code is provided "as is" without warranty of any kind, express or implied. The author are not responsible for any damages or losses arising from the use of this code. Consider that this solution is aimed for personal use and app users are considered trusted parties of the main user. Consider GDPR and personal data requirements in managing surveys.
