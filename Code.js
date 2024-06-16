@@ -1,15 +1,12 @@
-/**
- * Arash Nedaei : nedaei.arash@gmail.com
- */
 // update the below variable with the URL of your own Google Doc template.
 // Make sure you update the sharing settings so that 'anyone'  or 'anyone in your organization' can view.
-const EMAIL_TEMPLATE_DOC_URL = 'https://docs.google.com/document/d/1N6xFDqU35nIDjdyJ2rroyXXAndnUzek3tr3EwmIz5Sg/edit?usp=sharing';
+const EMAIL_TEMPLATE_DOC_URL = 'url';
 // Update this variable to customize the email subject.
-const EMAIL_SUBJECT = 'Thanks for your participation in the Puistokahvila Makia Survey';
+const EMAIL_SUBJECT = 'Thanks for your participation in the XXXXXXXXXX Survey';
 // BCC recipients
-const EMAIL_BCC = "nedaei.arash@gmail.com, arash.nedaeijanbesaraei@student.oulu.fi";
+const EMAIL_BCC = "adress_1@email.com, address_2@email.com";
 
-const VOUCHERS_SHEET_URL = "https://docs.google.com/spreadsheets/d/1KpMotU8m-fall4_7qbYQ2q3N10hm4G9Rtk95ebYF8ZQ/edit?usp=sharing"
+const VOUCHERS_SHEET_URL = "url"
 
 const EXPIRATION_DURATION_IN_DAYS = 14;
 
