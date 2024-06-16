@@ -4,13 +4,13 @@
 
 This project offers a cost-effective, fully integrated solution for:
 
-:gear: collecting customer feedback
+:gear: Collecting customer feedback
 
 :gear: Automated form submission Email
 
-:gear: rewarding participation with discount vouchers
+:gear: Rewarding participation with discount vouchers
 
-:gear: managing voucher expiration and usage
+:gear: Managing voucher expiration and usage
 
 
 
