@@ -20,7 +20,7 @@ It leverages the free tier capabilities of:
 
 
 :vertical_traffic_light: Apps created with AppSheet can be used free of charge by 10 users!  
-:vertical_traffic_light: I don't explain how to create the service point app using AppSheet, in this document. There are lots of good tutorials that help create your app in just 1 hour. I share links at the end.
+:vertical_traffic_light: I don't explain how to create the service point app using AppSheet in this document. There are lots of good tutorials that help create your app in just 1 hour. I share links at the end.
 
 **Solution Benefits:** 
 1. Increase response rates by incentivizing participation with discount vouchers just after submiting the form.
