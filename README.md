@@ -57,9 +57,9 @@ I wanted to run a survey for analyzing customer satisfaction and value creating 
 6. Create a spead Sheet using the sample vouchers.xlsx file in the repository. Paste your column of vouchers in the table. Let other columns and cell structures as it is. From **Share** click on the **Copy link**, and keep it for later (in the same note :D )
 <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/ScreenshotVouchers.png"> 
 
-7. Open the survey responses spreadsheet connected to your form click **Extensions > Apps Script**.
+7. Open the survey responses spreadsheet connected to your form, then click **Extensions > Apps Script**.
 
-    a. copy ```Code.js``` file in the repository and paste it to the ```code.gs``` in the Apps Script project.  
+    a. copy ```Code.js``` file content in the repository and paste it to the ```code.gs``` in the Apps Script project.  
     b. change the ```url``` in ```const EMAIL_TEMPLATE_DOC_URL = "url"``` with email template Doc link.  
     c. change the ```url``` in ```const VOUCHERS_SHEET_URL =``` with voucher reference sheet link.  
     d. Edit ```const EMAIL_SUBJECT = "text"``` and ```const EMAIL_BCC = "adress_1@email.com, address_2@email.com"``` and ```const EXPIRATION_DURATION_IN_DAYS = 14``` based on your preference.  
