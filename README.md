@@ -61,7 +61,7 @@ I wanted to run a survey for analyzing customer satisfaction and value creating 
 
     a. copy ```Code.js``` file content in the repository and paste it to the ```code.gs``` in the Apps Script project.  
     b. change the ```url``` in ```const EMAIL_TEMPLATE_DOC_URL = "url"``` with email template Doc link.  
-    c. change the ```url``` in ```const VOUCHERS_SHEET_URL =``` with voucher reference sheet link.  
+    c. change the ```url``` in ```const VOUCHERS_SHEET_URL ="url"``` with voucher reference sheet link.  
     d. Edit ```const EMAIL_SUBJECT = "text"``` and ```const EMAIL_BCC = "adress_1@email.com, address_2@email.com"``` and ```const EXPIRATION_DURATION_IN_DAYS = 14``` based on your preference.  
     e. In the function dropdown, select ```installTrigger```.  
     f. Click Run.  
