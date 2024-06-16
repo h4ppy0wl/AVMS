@@ -39,8 +39,12 @@ I wanted to run a survey for analyzing customer satisfaction and value creating 
    ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
    ```
 2. Connect the form to a Google Sheet
-3. Create a Google Doc contaning "Thank you" email body. Mark variables in the body like {{exampleVar}} in the document text. look in the example doc in the project files.
-4. Create a 
+3. Create a Google Doc contaning "Thank you" email body. Mark variables in the body using double curly braces like {{exampleVar}} in the document text. look in the example doc in the project files.
+4. Generate random vouchers in a sheet document using a formula function. You can use following formula to generate a **seven** charachter string. customize it for your need.
+   ```
+   =CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))
+   ```
+6. Create a spead Sheet using the sample .xlsx file in the repository. paste your vouchers in the table.in conatining pregenerated vouchers
 Upon form  completion, Google Apps Script triggers an automated workflow:
 Retrieves a voucher code from a designated Google Sheet.
 Generates a personalized email based on a Google Doc template.
