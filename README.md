@@ -19,9 +19,10 @@ It leverages the free tier capabilities of:
 <a href="https://about.appsheet.com/home/"><img src="https://github.com/h4ppy0wl/myMaterials/blob/main/480px-Google_Apps_Script.svg.png" alt="Apps Script"  width="50" height="50"></a> Google Apps Script    <a href="https://script.google.com/home/start"><img src="https://github.com/h4ppy0wl/myMaterials/blob/main/app-sheet.svg" alt="appsheet"  width="50" height="50"></a> Google AppSheet    [![Forms](https://github.com/h4ppy0wl/myMaterials/blob/main/forms_2020q4_48dp.png)](https://docs.google.com/forms/) Google Forms    [![Docs](https://github.com/h4ppy0wl/myMaterials/blob/main/docs_2020q4_48dp.png)](https://docs.google.com/document/) Google Docs    [![Sheets](https://github.com/h4ppy0wl/myMaterials/blob/main/sheets_2020q4_48dp.png)](https://docs.google.com/spreadsheets/) Google Sheets
 
 
-:vertical_traffic_light: Apps created with AppSheet can be used free of charge by 10 users!
+:vertical_traffic_light: Apps created with AppSheet can be used free of charge by 10 users!  
+:vertical_traffic_light: I don't explain how to create the service point app using AppSheet, in this document. There are lots of good tutorials that help create your app in just 1 hour. I share links at the end.
 
-**Benefits:** 
+**Solution Benefits:** 
 1. Increase response rates by incentivizing participation with discount vouchers just after submiting the form.
 2. Automate email responses with vouchers upon survey completion, and integrating the system with voucher managagement app.
 3. Manage voucher expiration and usage efficiently and with multiple users.
@@ -41,16 +42,22 @@ I wanted to run a survey for analyzing customer satisfaction and value creating 
    ```regex
    ^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$
    ```
+
 <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/ScreenshotForm.png">
 
 2. Connect the form to a Google Sheet
 3. Create a Google Doc using "Send curated content email template.docx" in the repository. Texts in the ```{{text}}``` are used as varables in the code.gs; you can edit the document but keep those. otherwise remember to edit the Apps Script code too. From **Share** click on the **Copy link**, and keep it for later (in a note :D )
+<img src="https://github.com/h4ppy0wl/myMaterials/blob/main/ScreenshotTemplate.png"> 
 4. Generate random vouchers in a sheet document using a formula function. You can use following formula to generate a **seven** charachter string. customize it for your need.
+
    ```
    =CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))& CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))&CHOOSE(RANDBETWEEN(1;2);CHAR(RANDBETWEEN(65;90)); CHAR(RANDBETWEEN(97;122)))
    ```
+
 6. Create a spead Sheet using the sample vouchers.xlsx file in the repository. Paste your column of vouchers in the table. Let other columns and cell structures as it is. From **Share** click on the **Copy link**, and keep it for later (in the same note :D )
-7. Open the survey responses spreadsheet connected to your form click **Extensions** > **Apps Script**.
+<img src="https://github.com/h4ppy0wl/myMaterials/blob/main/ScreenshotVouchers.png"> 
+
+7. Open the survey responses spreadsheet connected to your form click **Extensions > Apps Script**.
 
     a. copy ```Code.js``` file in the repository and paste it to the ```code.gs``` in the Apps Script project.  
     b. change the ```url``` in ```const EMAIL_TEMPLATE_DOC_URL = "url"``` with email template Doc link.  
