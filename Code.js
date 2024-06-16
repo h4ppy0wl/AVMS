@@ -2,7 +2,7 @@
 // Make sure you update the sharing settings so that 'anyone'  or 'anyone in your organization' can view.
 const EMAIL_TEMPLATE_DOC_URL = 'url';
 // Update this variable to customize the email subject.
-const EMAIL_SUBJECT = 'Thanks for your participation in the XXXXXXXXXX Survey';
+const EMAIL_SUBJECT = 'text';
 // BCC recipients
 const EMAIL_BCC = "adress_1@email.com, address_2@email.com";
 
