@@ -46,7 +46,7 @@ I wanted to run a survey for analyzing customer satisfaction and value creating 
 <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/ScreenshotForm.png">
 
 2. Connect the form to a Google Sheet
-3. Create a Google Doc using "Send curated content email template.docx" in the repository. Texts in the ```{{text}}``` are used as varables in the code.gs; you can edit the document but keep those. otherwise remember to edit the Apps Script code too. From **Share** click on the **Copy link**, and keep it for later (in a note :D )
+3. Create a Google Doc using "Send curated content email template.docx" in the repository. Texts in curly brackets like ```{{text}}``` are used as varables in the code.gs; you can edit the document but keep those. otherwise remember to edit the Apps Script code too. From **Share** click on the **Copy link**, and keep it for later (in a note :D )
 <img src="https://github.com/h4ppy0wl/myMaterials/blob/main/ScreenshotTemplate.png"> 
 4. Generate random vouchers in a sheet document using a formula function. You can use following formula to generate a **seven** charachter string. customize it for your need.
 
