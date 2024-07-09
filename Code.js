@@ -1,6 +1,7 @@
 // update the below variable with the URL of your own Google Doc template.
 // Make sure you update the sharing settings so that 'anyone'  or 'anyone in your organization' can view.
 const EMAIL_TEMPLATE_DOC_URL = 'url';
+const RESUBMISSION_EMAIL_BODY_DOC_URL = 'url2';
 // Update this variable to customize the email subject.
 const EMAIL_SUBJECT = 'text';
 // BCC recipients
@@ -34,21 +35,37 @@ function onFormSubmit(e) {
   let timestampString = Utilities.formatDate(new Date(), "GMT+03:00", "dd.MM.yyyy HH:mm:ss");
   let email = responses['Email address'][0].trim();
   
+
   // If there is an email address, send an email to the recipient.
   let status = '';
   if (email.length > 6) {
-    //calculate expiration date for voucher
-    let expTime = new Date();
-    expTime.setDate(expTime.getDate() + (EXPIRATION_DURATION_IN_DAYS + 1));
-    //fetch voucher from excel
-    new_voucher = fetchVoucher(new Date(), email, expTime);
+    // findTextInColumn(email, 6) returns true if there is no email address like "email" in the vouchers sheet
+    if (findTextInColumn(email, 6)) {
+        //calculate expiration date for voucher
+        let expTime = new Date();
+        expTime.setDate(expTime.getDate() + (EXPIRATION_DURATION_IN_DAYS + 1));
+        //fetch voucher from excel
+        new_voucher = fetchVoucher(new Date(), email, expTime);
 
-    MailApp.sendEmail({
-      to: email,
-      bcc:EMAIL_BCC,
-      subject: EMAIL_SUBJECT,
-      htmlBody: createEmailBody(timestampString, new_voucher, expTime),
-    });
+        MailApp.sendEmail({
+          to: email,
+          bcc:EMAIL_BCC,
+          subject: EMAIL_SUBJECT,
+          htmlBody: createEmailBody(timestampString, new_voucher, expTime, false),
+        });
+    }
+    else{
+        //calculate expiration date for voucher
+        let expTime = new Date();
+        new_voucher = " ";
+
+        MailApp.sendEmail({
+          to: email,
+          bcc:EMAIL_BCC,
+          subject: EMAIL_SUBJECT,
+          htmlBody: createEmailBody(timestampString, new_voucher, expTime, true),
+        });
+    }
     status = 'Email sent';
   }
   else {
@@ -84,6 +101,25 @@ function fetchVoucher(time1, email, expirationDate){
   return new_unique_voucher;
 } 
 
+
+function findTextInColumn(textToFind, columnNumber = 6) {
+  // Get the sheet and data
+  let sheet = SpreadsheetApp.openByUrl(VOUCHERS_SHEET_URL).getSheetByName("Sheet1");
+  let data = sheet.getDataRange().getValues();
+
+  // Loop through each row in the data
+  for (const row of data) {
+    const cellValue = row[columnNumber - 1];
+    
+    // Check for the text (case-insensitive) with indexOf
+    if (cellValue && cellValue.toLowerCase().indexOf(textToFind.toLowerCase()) !== -1) {
+      return false;
+    }
+  }
+  // No match found, return true (default behavior)
+  return true;
+}
+
 /**
  * Creates email body and includes the links based on topic.
  *
@@ -91,7 +127,13 @@ function fetchVoucher(time1, email, expirationDate){
  * @param {string[]} voucher_expiration_date - expiration date of this unique voucher.
  * @return {string} - The email body as an HTML string.
  */
-function createEmailBody(time, unique_voucher, voucher_expiration_date) {
+function createEmailBody(time, unique_voucher, voucher_expiration_date, resubmission) {
+  if (resubmission){
+    let docId = DocumentApp.openByUrl(RESUBMISSION_EMAIL_BODY_DOC_URL).getId();
+    let emailBody = docToHtml(docId);
+    emailBody = emailBody.replace(/{{TIME}}/g, time);
+    return emailBody;
+  }
   // Make sure to update the emailTemplateDocId at the top.
   let docId = DocumentApp.openByUrl(EMAIL_TEMPLATE_DOC_URL).getId();
   let emailBody = docToHtml(docId);
