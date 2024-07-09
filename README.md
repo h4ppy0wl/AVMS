@@ -10,6 +10,8 @@ This project offers a cost-effective, fully integrated solution for:
 
 :gear: Rewarding participation with discount vouchers
 
+:gear: Resubmission handling (9.7.2024)
+
 :gear: Managing voucher expiration and usage
 
 
